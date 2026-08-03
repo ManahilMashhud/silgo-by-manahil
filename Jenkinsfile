@@ -5,7 +5,6 @@ pipeline {
         HARBOR_REGISTRY = '192.168.5.232:8085'
         PROJECT_NAME    = 'silgo'
         IMAGE_NAME      = 'silgo-website'
-        CREDENTIALS_ID  = 'harbor-creds' // Yahan wahi ID likhein jo Jenkins credentials mein hai
         
         TAG_VERSION     = "${BUILD_NUMBER}"
         TAG_LATEST      = "latest"
@@ -18,7 +17,6 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                // Yahan explicit git checkout dein taake credentials conflict na karein
                 git branch: 'master', credentialsId: 'gitlab-creds', url: 'http://192.168.5.232:8085/root/silgo.git'
             }
         }
@@ -34,10 +32,12 @@ pipeline {
         stage('Push to Harbor') {
             steps {
                 script {
-                    docker.withRegistry("http://${HARBOR_REGISTRY}", "${CREDENTIALS_ID}") {
-                        app.push("${BUILD_NUMBER}")
-                        app.push("latest")
-                    }
+                    // Direct password use karte hue login aur push
+                    sh '''
+                        echo "Harbor12345" | docker login ${HARBOR_REGISTRY} -u admin --password-stdin
+                        docker push ${HARBOR_REGISTRY}/${PROJECT_NAME}/${IMAGE_NAME}:${TAG_VERSION}
+                        docker push ${HARBOR_REGISTRY}/${PROJECT_NAME}/${IMAGE_NAME}:${TAG_LATEST}
+                    '''
                 }
             }
         }
