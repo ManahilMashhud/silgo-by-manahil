@@ -32,7 +32,6 @@ pipeline {
         stage('Push to Harbor') {
             steps {
                 script {
-                    // Direct password use karte hue login aur push
                     sh '''
                         echo "Harbor12345" | docker login ${HARBOR_REGISTRY} -u admin --password-stdin
                         docker push ${HARBOR_REGISTRY}/${PROJECT_NAME}/${IMAGE_NAME}:${TAG_VERSION}
