@@ -5,6 +5,7 @@ pipeline {
         HARBOR_REGISTRY = '192.168.5.234'
         PROJECT_NAME    = 'silgo'
         IMAGE_NAME      = 'silgo-website'
+        CREDENTIALS_ID  = 'harbor-creds'
         
         TAG_VERSION     = "${BUILD_NUMBER}"
         TAG_LATEST      = "latest"
@@ -32,12 +33,10 @@ pipeline {
         stage('Push to Harbor') {
             steps {
                 script {
-                    // Direct password use karte hue login aur push
-                    sh '''
-                        echo "Harbor12345" | docker login ${HARBOR_REGISTRY} -u admin --password-stdin
-                        docker push ${HARBOR_REGISTRY}/${PROJECT_NAME}/${IMAGE_NAME}:${TAG_VERSION}
-                        docker push ${HARBOR_REGISTRY}/${PROJECT_NAME}/${IMAGE_NAME}:${TAG_LATEST}
-                    '''
+                    docker.withRegistry("http://${HARBOR_REGISTRY}", "${CREDENTIALS_ID}") {
+                        app.push("${BUILD_NUMBER}")
+                        app.push("latest")
+                    }
                 }
             }
         }
