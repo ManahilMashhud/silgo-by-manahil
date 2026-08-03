@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        HARBOR_REGISTRY = '192.168.5.234'
+        HARBOR_REGISTRY = '192.168.5.234:8085'
         PROJECT_NAME    = 'silgo'
         IMAGE_NAME      = 'silgo-website'
         
