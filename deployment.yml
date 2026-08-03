@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: silgo-deployment
+  namespace: death
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: silgo
+  template:
+    metadata:
+      labels:
+        app: silgo
+    spec:
+      containers:
+      - name: silgo
+        image: 192.168.5.232:8085/silgo/silgo-website:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
