@@ -5,7 +5,7 @@ pipeline {
         HARBOR_REGISTRY = '192.168.5.232:8085'
         PROJECT_NAME    = 'silgo'
         IMAGE_NAME      = 'silgo-website'
-        CREDENTIALS_ID  = 'harbor-creds'
+        CREDENTIALS_ID  = 'harbor-creds' // Yahan wahi ID likhein jo Jenkins credentials mein hai
         
         TAG_VERSION     = "${BUILD_NUMBER}"
         TAG_LATEST      = "latest"
@@ -18,7 +18,8 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                checkout scm
+                // Yahan explicit git checkout dein taake credentials conflict na karein
+                git branch: 'master', credentialsId: 'gitlab-creds', url: 'http://192.168.5.232:8085/root/silgo.git'
             }
         }
 
