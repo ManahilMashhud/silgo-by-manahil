@@ -1,0 +1,9 @@
+{
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "livePreview.hostIP": "192.168.1.100",
+    "livePreview.httpHeaders": {
+        
+        "Accept-Ranges": "bytes"
+    },
+    "livePreview.defaultPreviewPath": "/index.html"
+}
