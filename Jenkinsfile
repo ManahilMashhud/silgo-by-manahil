@@ -5,7 +5,7 @@ pipeline {
         HARBOR_REGISTRY = '192.168.5.232:8085'
         PROJECT_NAME    = 'silgo'
         IMAGE_NAME      = 'silgo-website'
-        CREDENTIALS_ID  = 'harbor-creds'
+        CREDENTIALS_ID  = 'admin'
         
         TAG_VERSION     = "${BUILD_NUMBER}"
         TAG_LATEST      = "latest"
