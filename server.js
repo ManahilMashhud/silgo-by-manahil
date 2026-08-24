@@ -5,8 +5,13 @@ const app = express();
 
 app.use(express.json());
 
-// Ye static website (HTML/CSS/Images) ko serve karega jo aapne pehle banayi hai
+// Static files (CSS, images, videos) ko /silgo ke zariye serve karne ke liye
 app.use('/silgo', express.static(path.join(__dirname)));
+
+// Root ya /silgo par aane par index.html dikhane ke liye
+app.get('/silgo', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 // Jab website se koi order aayega, ye API run hogi
 app.post('/api/order', async (req, res) => {
@@ -14,7 +19,7 @@ app.post('/api/order', async (req, res) => {
         const orderData = req.body;
         console.log("Received order:", orderData);
         
-        // Kubernetes ke andar chal rahe RabbitMQ ka URL (agar local hai toh localhost)
+        // Kubernetes ke andar chal rahe RabbitMQ ka URL
         const rabbitmqUrl = process.env.RABBITMQ_URL || 'amqp://localhost';
         
         const connection = await amqp.connect(rabbitmqUrl);
