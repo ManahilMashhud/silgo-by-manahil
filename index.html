@@ -237,12 +237,12 @@
             displayProducts(category);
         }
 
-        // New function to push order to backend/RabbitMQ and open WhatsApp
+        // Updated placeOrder function to send request to backend
         async function placeOrder(productName, price) {
             const orderData = { productName, price, date: new Date().toISOString() };
             
             try {
-                await fetch('/api/order', {
+                await fetch('./api/order', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(orderData)
