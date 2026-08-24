@@ -177,6 +177,7 @@
             margin-top: 10px;
             font-size: 14px;
             transition: background-color 0.3s ease;
+            cursor: pointer;
         }
         .whatsapp-btn:hover {
             background-color: #1ebe5d;
@@ -236,6 +237,25 @@
             displayProducts(category);
         }
 
+        // New function to push order to backend/RabbitMQ and open WhatsApp
+        async function placeOrder(productName, price) {
+            const orderData = { productName, price, date: new Date().toISOString() };
+            
+            try {
+                await fetch('/api/order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderData)
+                });
+            } catch (err) {
+                console.error("Failed to send order to backend:", err);
+            }
+
+            let waMessage = `Hi Silgo, I want to order ${productName} for Rs. ${price}`;
+            let waLink = `https://wa.me/923712159676?text=${encodeURIComponent(waMessage)}`;
+            window.open(waLink, '_blank');
+        }
+
         function displayFeaturedProducts() {
             const grid = document.getElementById('featured-products');
             grid.innerHTML = '';
@@ -250,9 +270,6 @@
             ];
 
             featured.forEach((product) => {
-                let waMessage = `Hi Silgo, I want to order ${product.name} for Rs. ${product.price}`;
-                let waLink = `https://wa.me/923712159676?text=${encodeURIComponent(waMessage)}`;
-
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
@@ -261,7 +278,7 @@
                     </div>
                     <div class="product-name">${product.name}</div>
                     <div class="product-price">Rs. ${product.price}</div>
-                    <a href="${waLink}" target="_blank" class="whatsapp-btn">Order via WhatsApp</a>
+                    <button onclick="placeOrder('${product.name}', '${product.price}')" class="whatsapp-btn">Order via WhatsApp</button>
                 `;
                 grid.appendChild(card);
             });
@@ -287,9 +304,6 @@
             }
 
             productsToShow.forEach((product) => {
-                let waMessage = `Hi Silgo, I want to order ${product.name} for Rs. ${product.price}`;
-                let waLink = `https://wa.me/923712159676?text=${encodeURIComponent(waMessage)}`;
-
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
@@ -298,7 +312,7 @@
                     </div>
                     <div class="product-name">${product.name}</div>
                     <div class="product-price">Rs. ${product.price}</div>
-                    <a href="${waLink}" target="_blank" class="whatsapp-btn">Order via WhatsApp</a>
+                    <button onclick="placeOrder('${product.name}', '${product.price}')" class="whatsapp-btn">Order via WhatsApp</button>
                 `;
                 grid.appendChild(card);
             });
@@ -323,9 +337,6 @@
             grid.innerHTML = "";
 
             filtered.forEach(product => {
-                let waMessage = `Hi Silgo, I want to order ${product.name} for Rs. ${product.price}`;
-                let waLink = `https://wa.me/923712159676?text=${encodeURIComponent(waMessage)}`;
-
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
@@ -334,7 +345,7 @@
                     </div>
                     <div class="product-name">${product.name}</div>
                     <div class="product-price">Rs. ${product.price}</div>
-                    <a href="${waLink}" target="_blank" class="whatsapp-btn">Order via WhatsApp</a>
+                    <button onclick="placeOrder('${product.name}', '${product.price}')" class="whatsapp-btn">Order via WhatsApp</button>
                 `;
                 grid.appendChild(card);
             });
