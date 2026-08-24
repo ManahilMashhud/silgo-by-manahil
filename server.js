@@ -5,30 +5,30 @@ const app = express();
 
 app.use(express.json());
 
-// Static files (CSS, images, videos) ko /silgo ke zariye serve karne ke liye
-app.use('/silgo', express.static(path.join(__dirname)));
+// Sabhi static files (CSS, JS, Images) ko seedha serve karne ke liye
+app.use(express.static(path.join(__dirname)));
 
-// Root ya /silgo par aane par index.html dikhane ke liye
+// Chahe user / par aaye ya /silgo par, index.html hi dikhegi
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.get('/silgo', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Jab website se koi order aayega, ye API run hogi
+// Order API waisi hi rahegi
 app.post('/api/order', async (req, res) => {
     try {
         const orderData = req.body;
         console.log("Received order:", orderData);
         
-        // Kubernetes ke andar chal rahe RabbitMQ ka URL
         const rabbitmqUrl = process.env.RABBITMQ_URL || 'amqp://localhost';
-        
         const connection = await amqp.connect(rabbitmqUrl);
         const channel = await connection.createChannel();
         
         const queue = 'silgo-orders';
         await channel.assertQueue(queue, { durable: true });
-        
-        // Message ko RabbitMQ queue mein bhej dena
         channel.sendToQueue(queue, Buffer.from(JSON.stringify(orderData)), { persistent: true });
         
         await channel.close();
@@ -41,5 +41,5 @@ app.post('/api/order', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Silgo backend running on port ${PORT}`));
