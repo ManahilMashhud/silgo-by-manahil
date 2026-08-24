@@ -19,7 +19,7 @@ spec:
         image: 192.168.5.232:8085/silgo/silgo-website:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 3000
         env:
         - name: RABBITMQ_URL
           value: "amqp://guest:guest@rabbitmq-svc.moon.svc.cluster.local:5672"
