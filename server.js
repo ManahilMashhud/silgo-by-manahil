@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 // Ye static website (HTML/CSS/Images) ko serve karega jo aapne pehle banayi hai
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/silgo', express.static(path.join(__dirname, 'public')));
 
 // Jab website se koi order aayega, ye API run hogi
 app.post('/api/order', async (req, res) => {
