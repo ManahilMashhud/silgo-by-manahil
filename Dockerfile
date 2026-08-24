@@ -13,7 +13,7 @@ RUN npm install
 COPY . .
 
 # Port open karein jo server.js use kar raha hai
-EXPOSE 3000
+EXPOSE 80
 
 # Server start karne ki command
 CMD ["node", "server.js"]
