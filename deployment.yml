@@ -22,4 +22,4 @@ spec:
         - containerPort: 3000
         env:
         - name: RABBITMQ_URL
-          value: "amqp://user:PASSWORD_YAHAN@rabbitmq.rabbitmq.svc.cluster.local:5672"
+          value: "amqp://user:310oHcR2mLsPLQSK@rabbitmq.rabbitmq.svc.cluster.local:5672"
