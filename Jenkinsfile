@@ -55,24 +55,25 @@ pipeline {
                     echo "Copying manifest files to Kubernetes server..."
 
                     ssh -o StrictHostKeyChecking=no "${APP_USER}@${APP_SERVER}" "mkdir -p /tmp/k8s-manifests"
-                    scp -o StrictHostKeyChecking=no deployment.yml service.yml "${APP_USER}@${APP_SERVER}:/tmp/k8s-manifests/"
+                    scp -o StrictHostKeyChecking=no deployment.yml service.yml consumer-deployment.yml "${APP_USER}@${APP_SERVER}:/tmp/k8s-manifests/"
 
                     echo "Applying manifests on Kubernetes server..."
 
                     ssh -o StrictHostKeyChecking=no "${APP_USER}@${APP_SERVER}" \
                         "NAMESPACE='${K8S_NAMESPACE}' \
                          bash -s" <<'REMOTE_SCRIPT'
-                        set -e
-                        cd /tmp/k8s-manifests
+                    set -e
+                    cd /tmp/k8s-manifests
 
-                        kubectl config use-context manahil
+                    kubectl config use-context manahil
 
-                        kubectl apply -f deployment.yml --namespace "$NAMESPACE"
-                        kubectl apply -f service.yml --namespace "$NAMESPACE"
+                    kubectl apply -f deployment.yml --namespace "$NAMESPACE"
+                    kubectl apply -f service.yml --namespace "$NAMESPACE"
+                    kubectl apply -f consumer-deployment.yml --namespace "$NAMESPACE"
 
-                        kubectl rollout status deployment/silgo-deployment --namespace "$NAMESPACE" --timeout=180s
+                    kubectl rollout status deployment/silgo-deployment --namespace "$NAMESPACE" --timeout=180s
 
-                        echo "Kubernetes deployment completed successfully!"
+                    echo "Kubernetes deployment completed successfully!"
 REMOTE_SCRIPT
                 '''
             }
