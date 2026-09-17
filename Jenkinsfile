@@ -1,18 +1,18 @@
 pipeline {
     agent any
-    
+
     environment {
         HARBOR_REGISTRY = '192.168.5.234'
         PROJECT_NAME    = 'silgo'
         IMAGE_NAME      = 'silgo-website'
         CREDENTIALS_ID  = 'harbor-creds'
-        
+
         TAG_VERSION     = "${BUILD_NUMBER}"
         TAG_LATEST      = "latest"
 
         APP_SERVER      = '192.168.5.235'
         APP_USER        = 'devops'
-        K8S_NAMESPACE   = 'death'
+        K8S_NAMESPACE   = 'manahil-silgo'
     }
 
     stages {
@@ -46,25 +46,26 @@ pipeline {
                 sh '''
                     set -e
                     echo "Preparing and updating deployment image tag locally..."
-                    
+
                     REGISTRY_IMAGE="${HARBOR_REGISTRY}/${PROJECT_NAME}/${IMAGE_NAME}"
                     if [ -f deployment.yml ]; then
                         sed -i "s|image:.*|image: ${REGISTRY_IMAGE}:${TAG_VERSION}|g" deployment.yml
                     fi
 
                     echo "Copying manifest files to Kubernetes server..."
-                    
+
                     ssh -o StrictHostKeyChecking=no "${APP_USER}@${APP_SERVER}" "mkdir -p /tmp/k8s-manifests"
                     scp -o StrictHostKeyChecking=no deployment.yml service.yml "${APP_USER}@${APP_SERVER}:/tmp/k8s-manifests/"
 
                     echo "Applying manifests on Kubernetes server..."
-                    
+
                     ssh -o StrictHostKeyChecking=no "${APP_USER}@${APP_SERVER}" \
                         "NAMESPACE='${K8S_NAMESPACE}' \
                          bash -s" <<'REMOTE_SCRIPT'
-
                         set -e
                         cd /tmp/k8s-manifests
+
+                        kubectl config use-context manahil
 
                         kubectl apply -f deployment.yml --namespace "$NAMESPACE"
                         kubectl apply -f service.yml --namespace "$NAMESPACE"
