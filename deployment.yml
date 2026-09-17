@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: silgo
-        image: 192.168.5.232:8085/silgo/silgo-website:latest
+        image: 192.168.5.234/silgo/silgo-website:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
