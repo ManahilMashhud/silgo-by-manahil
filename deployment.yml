@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: silgo-deployment
-  namespace: death
+  namespace: manahil-silgo
 spec:
   replicas: 1
   progressDeadlineSeconds: 600
@@ -22,4 +22,4 @@ spec:
         - containerPort: 3000
         env:
         - name: RABBITMQ_URL
-          value: "amqp://guest:guest@rabbitmq-svc.moon.svc.cluster.local:5672"
+          value: "amqp://user:PASSWORD_YAHAN@rabbitmq.rabbitmq.svc.cluster.local:5672"
