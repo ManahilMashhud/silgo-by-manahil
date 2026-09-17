@@ -2,7 +2,7 @@ const amqp = require('amqplib');
 
 async function startConsumer() {
     try {
-        const rabbitmqUrl = process.env.RABBITMQ_URL || 'amqp://user:PASSWORD_YAHAN@rabbitmq.rabbitmq.svc.cluster.local:5672';
+                 const rabbitmqUrl = process.env.RABBITMQ_URL || 'amqp://user:310oHcR2mLsPLQSK@rabbitmq.rabbitmq.svc.cluster.local:5672';
         
         console.log("Connecting to RabbitMQ...");
         const connection = await amqp.connect(rabbitmqUrl);
