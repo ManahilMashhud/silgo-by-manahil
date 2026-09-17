@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   silgo:
-    image: 192.168.5.232:8085/silgo/silgo-website:latest
+    image: 192.168.5.234/silgo/silgo-website:latest
     container_name: silgo-container
     ports:
       - "8081:80"
