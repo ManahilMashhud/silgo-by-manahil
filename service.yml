@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: silgo-service
-  namespace: death
+  namespace: manahil-silgo
 spec:
   type: NodePort
   selector:
