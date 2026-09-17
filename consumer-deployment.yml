@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: silgo-consumer
-        image: 192.168.5.232:8085/silgo/silgo-website:latest
+        image: 192.168.5.234/silgo/silgo-website:latest
         imagePullPolicy: Always
         command: ["node", "consumer.js"]
         env:
