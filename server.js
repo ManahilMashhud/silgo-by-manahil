@@ -1,14 +1,13 @@
 const express = require('express');
 const amqp = require('amqplib');
 const path = require('path');
+const fs = require('fs');
 const app = express();
 
 app.use(express.json());
 
-// Sabhi static files (CSS, JS, Images) ko seedha serve karne ke liye
 app.use(express.static(path.join(__dirname)));
 
-// Chahe user / par aaye ya /silgo par, index.html hi dikhegi
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
@@ -17,13 +16,12 @@ app.get('/silgo', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Order API for /api/order
 app.post('/api/order', async (req, res) => {
     try {
         const orderData = req.body;
         console.log("Received order:", orderData);
         
-        const rabbitmqUrl = process.env.RABBITMQ_URL || 'amqp://localhost';
+        const rabbitmqUrl = fs.readFileSync('/vault/secrets/rabbitmq', 'utf8').trim();
         const connection = await amqp.connect(rabbitmqUrl);
         const channel = await connection.createChannel();
         
@@ -41,13 +39,12 @@ app.post('/api/order', async (req, res) => {
     }
 });
 
-// Order API for /silgo/api/order (Path Prefix handling)
 app.post('/silgo/api/order', async (req, res) => {
     try {
         const orderData = req.body;
         console.log("Received order (silgo prefix):", orderData);
         
-        const rabbitmqUrl = process.env.RABBITMQ_URL || 'amqp://localhost';
+        const rabbitmqUrl = fs.readFileSync('/vault/secrets/rabbitmq', 'utf8').trim();
         const connection = await amqp.connect(rabbitmqUrl);
         const channel = await connection.createChannel();
         
