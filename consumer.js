@@ -1,8 +1,9 @@
 const amqp = require('amqplib');
+const fs = require('fs');
 
 async function startConsumer() {
     try {
-                 const rabbitmqUrl = process.env.RABBITMQ_URL || 'amqp://user:310oHcR2mLsPLQSK@rabbitmq.rabbitmq.svc.cluster.local:5672';
+        const rabbitmqUrl = fs.readFileSync('/vault/secrets/rabbitmq', 'utf8').trim();
         
         console.log("Connecting to RabbitMQ...");
         const connection = await amqp.connect(rabbitmqUrl);
