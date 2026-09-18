@@ -12,12 +12,17 @@ spec:
     metadata:
       labels:
         app: silgo-consumer
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "silgo-role"
+        vault.hashicorp.com/agent-inject-secret-rabbitmq: "secret/data/rabbitmq"
+        vault.hashicorp.com/agent-inject-template-rabbitmq: |
+          {{- with secret "secret/data/rabbitmq" -}}
+          {{ .Data.data.rabbitmq_url }}
+          {{- end -}}
     spec:
       containers:
       - name: silgo-consumer
         image: 192.168.5.234/silgo/silgo-website:latest
         imagePullPolicy: Always
         command: ["node", "consumer.js"]
-        env:
-        - name: RABBITMQ_URL
-          value: "amqp://user:310oHcR2mLsPLQSK@rabbitmq.rabbitmq.svc.cluster.local:5672"
