@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Silgo offers handcrafted resin jewelry and luxury beaded motion bags, blending timeless artistry with modern fashion to create unique, wearable statement pieces.">
+    <meta name="description" content="Silgo offers handcrafted resin jewelry and luxury beaded motion bags.">
     <title>SILGO - Minimalist Jewelry</title>
-    <link rel="stylesheet" href="Style.CSS">
-    <div id="welcome-message">WELCOME TO SILGO</div>
+    <link rel="stylesheet" href="Style.css">
 </head>
 <body>
+
+    <!-- Welcome Toast -->
+    <div id="welcome-message">WELCOME TO SILGO</div>
+
+    <!-- Header Navigation -->
     <nav>
         <div class="nav-container">
             <div class="nav-left">
@@ -21,9 +25,9 @@
                     <li class="dropdown">
                         <a href="#" onclick="showPage('products')">PRODUCTS</a>
                         <div class="dropdown-content">
-                            <a href="#" onclick="showCategory('Braclate')">BRACLATES</a>
+                            <a href="#" onclick="showCategory('Bracelet')">BRACELETS</a>
                             <a href="#" onclick="showCategory('Bags')">BAGS</a>
-                            <a href="#" onclick="showCategory('Earings')">EARINGS</a>
+                            <a href="#" onclick="showCategory('Earrings')">EARRINGS</a>
                         </div>
                     </li>
                     <li><a href="#" onclick="showPage('about')">ABOUT</a></li>
@@ -33,6 +37,7 @@
         </div>
     </nav>
 
+    <!-- Home Page -->
     <div id="home" class="page active">
         <div class="announcement">
             NEW ARRIVALS: Discover Our Latest Collection ✨
@@ -43,8 +48,8 @@
                 <source src="style.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay">
-               <h1 style="margin: 0;">SILGO</h1>
-               <p style="color: #b89c6a; font-family: 'Georgia', serif; font-style: italic; font-size: 22px; letter-spacing: 1px; margin: 5px 0; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+               <h1>SILGO</h1>
+               <p style="color: #b89c6a; font-family: 'Georgia', serif; font-style: italic;">
                    Where You Trust
                </p>
             </div>
@@ -59,24 +64,24 @@
         </div>
 
         <div class="featured-collections">
-            <div class="collection-item" onclick="showCategory('Braclate')">
-                <img src="img13.jpg" alt="BRACLATES">
+            <div class="collection-item" onclick="showCategory('Bracelet')">
+                <img src="img13.jpg" alt="BRACELETS" loading="lazy">
                 <div class="collection-overlay">
-                    <h3>BRACLATES</h3>
+                    <h3>BRACELETS</h3>
                     <p>Wearable nature in crystal Resin</p>
                 </div>
             </div>
             
-            <div class="collection-item" onclick="showCategory('Earings')">
-                <img src="img2.jpg" alt="EARINGS">
+            <div class="collection-item" onclick="showCategory('Earrings')">
+                <img src="img2.jpg" alt="EARRINGS" loading="lazy">
                 <div class="collection-overlay">
-                    <h3>EARINGS</h3>
+                    <h3>EARRINGS</h3>
                     <p>Unique Resin Blooms & Geometric Styles</p>
                 </div>
             </div>
             
             <div class="collection-item" onclick="showCategory('Bags')">
-                <img src="bag1.jpg" alt="BAGS">
+                <img src="bag1.jpg" alt="BAGS" loading="lazy">
                 <div class="collection-overlay">
                     <h3>BAGS</h3>
                     <p>Beaded Purse & Clutch</p>
@@ -85,6 +90,7 @@
         </div>
     </div>
 
+    <!-- Products Page -->
     <div id="products" class="page">
         <div class="product-section">
             <h2 class="category-title" id="category-title">ALL PRODUCTS</h2>
@@ -92,40 +98,41 @@
         </div>
     </div>
 
+    <!-- About Page -->
     <div id="about" class="page">
         <div class="about-content">
-            <div style="max-width:700px; margin:auto; text-align:center; line-height:1.6; font-family:Arial, sans-serif;">
+            <div style="text-align:center; line-height:1.6;">
                 <h2 style="font-size:32px; letter-spacing:2px; color:#222; border-bottom:2px solid #d4af37; display:inline-block; padding-bottom:8px; margin-bottom:20px;">
                     ABOUT SILGO
                 </h2>
                 <p>Born from a passion for unique craftsmanship, <strong>Silgo</strong> is where artistry meets modern fashion. Our startup brings you a curated blend of two beautiful worlds: Bespoke Resin Art and Trend-setting Motion Bags.</p>
                 <p><strong>The Resin Collection:</strong> We preserve the delicate beauty of nature within crystal-clear resin. From floral-infused earrings to personalized keychains and bracelets, each piece is a handcrafted keepsake designed to last forever.</p>
-                <p><strong>Motion &amp; Beaded Luxury:</strong> Staying ahead of the trends, we design exquisite beaded bags (commonly known as Motion Bags). With heavy beadwork and premium finishes, these bags are crafted to be the highlight of any bridal or party ensemble.</p>
+                <p><strong>Motion &amp; Beaded Luxury:</strong> Staying ahead of the trends, we design exquisite beaded bags. With heavy beadwork and premium finishes, these bags are crafted to be the highlight of any bridal or party ensemble.</p>
                 <p><strong>Handcrafted with Heart:</strong> Every product at Silgo is handmade with meticulous attention to detail. We believe that true luxury lies in the imperfections and uniqueness that only "handmade" can offer.</p>
-                <p>At <strong>Silgo</strong>, our mission is to empower your personal style with accessories that tell a story. We don’t just make jewelry and bags — we create wearable art that makes you stand out.</p>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h3>ABOUT SILGO</h3>
                 <p>Handcrafted jewelry that celebrates timeless elegance and minimalist design. Each piece is created with natural gemstones and exceptional craftsmanship.</p>
                 <div class="social-links">
-                    <a target="_blank" href="https://www.facebook.com/share/17vikyYT1G/" title="Facebook">f</a>
-                    <a target="_blank" href="https://www.instagram.com/silgo39/?hl=en" title="Instagram">📷</a>
-                    <a target="_blank" href="#" title="Pinterest">P</a>
-                    <a target="_blank" href="#" title="Twitter">🐦</a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/share/17vikyYT1G/" title="Facebook">f</a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/silgo39/?hl=en" title="Instagram">📷</a>
+                    <a target="_blank" rel="noopener noreferrer" href="#" title="Pinterest">P</a>
+                    <a target="_blank" rel="noopener noreferrer" href="#" title="Twitter">🐦</a>
                 </div>
             </div>
 
             <div class="footer-section">
                 <h3>SHOP</h3>
                 <ul>
-                    <li><a href="#" onclick="showCategory('Braclate')">BRACLATES</a></li>
+                    <li><a href="#" onclick="showCategory('Bracelet')">BRACELETS</a></li>
                     <li><a href="#" onclick="showCategory('Bags')">BAGS</a></li>
-                    <li><a href="#" onclick="showCategory('Earings')">EARINGS</a></li>
+                    <li><a href="#" onclick="showCategory('Earrings')">EARRINGS</a></li>
                     <li><a href="#" onclick="showPage('products')">All Products</a></li>
                 </ul>
             </div>
@@ -136,9 +143,7 @@
                     <li><a href="#">Contact Us</a></li>
                     <li><a href="#">Shipping & Delivery</a></li>
                     <li><a href="#">Returns & Exchanges</a></li>
-                    <li><a href="#">Size Guide</a></li>
                     <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Jewelry Care</a></li>
                 </ul>
             </div>
 
@@ -159,57 +164,39 @@
                 <span>💳 AMEX</span>
                 <span>💳 PAYPAL</span>
             </div>
-            <p style="margin-top: 1.5rem;">© 2024 SILGO Jewelry. All rights reserved. | Privacy Policy | Terms & Conditions</p>
+            <p style="margin-top: 1.5rem;">© 2026 SILGO Jewelry. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- WhatsApp Button Styling -->
-    <style>
-        .whatsapp-btn {
-            display: block;
-            background-color: #25D366;
-            color: #ffffff;
-            text-align: center;
-            padding: 8px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 10px;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-        .whatsapp-btn:hover {
-            background-color: #1ebe5d;
-        }
-    </style>
-
+    <!-- JavaScript Logic -->
     <script>
         window.addEventListener("load", function () {
             const msg = document.getElementById("welcome-message");
-            setTimeout(() => {
-                msg.style.display = "none";
-            }, 2000);
+            if(msg) {
+                setTimeout(() => {
+                    msg.style.display = "none";
+                }, 2000);
+            }
         });
 
         const products = {
-            Braclate: [
-                { name: 'Silgo Bunny Charm Bracelet', price: 250, category: 'Braclate', image: 'img1.jfif' },
-                { name: 'Basant Bahar Gajrays', price: 999, category: 'Braclate', image: 'img11.jfif' },
-                { name: 'Beaded Charm Bracelets', price: '300', category: 'Braclate', image: 'img19.jpg' },
-                { name: 'Stackable Crystal Bands', price: 300, category: 'Braclate', image: 'img15.jpg' },
-                { name: 'Faux Pearls', price: 250, category: 'Braclate', image: 'img16.jpg' },
-                { name: 'Resin Flower Bangles', price: 'Pair 1050', category: 'Braclate', image: 'img23.jfif' },
-                { name: 'Royal Ebony Gajrays', price: 999, category: 'Braclate', image: 'img12.jpg' }
+            Bracelet: [
+                { name: 'Silgo Bunny Charm Bracelet', price: 250, category: 'Bracelet', image: 'img1.jfif' },
+                { name: 'Basant Bahar Gajrays', price: 999, category: 'Bracelet', image: 'img11.jfif' },
+                { name: 'Beaded Charm Bracelets', price: 300, category: 'Bracelet', image: 'img19.jpg' },
+                { name: 'Stackable Crystal Bands', price: 300, category: 'Bracelet', image: 'img15.jpg' },
+                { name: 'Faux Pearls', price: 250, category: 'Bracelet', image: 'img16.jpg' },
+                { name: 'Resin Flower Bangles', price: 'Pair 1050', category: 'Bracelet', image: 'img23.jfif' },
+                { name: 'Royal Ebony Gajrays', price: 999, category: 'Bracelet', image: 'img12.jpg' }
             ],
-            Earings: [ 
-                { name: 'Square Resin Drop Earrings', price: 350, category: 'Earings', image: 'img2.jpg' },
-                { name: 'Resin Monstera Leaf Earrings', price: 350, category: 'Earings', image: 'img4.jfif' },
-                { name: 'Resin Butterfly Keychain', price: 250, category: 'Earings', image: 'img7.jpg' },
-                { name: 'Silgo Angel Wings Keychain', price: 250, category: 'Earings', image: 'img8.jpg' },
-                { name: 'Resin Inlay Chain', price: 300, category: 'Earings', image: 'img21.jfif' },
-                { name: 'Resin Pendant Jewelry Set', price: 350, category: 'Earings', image: 'img22.jfif' },
-                { name: 'Butterfly Bestie Set KeyChains', price: 400, category: 'Earings', image: 'img9.jpg' }
+            Earrings: [ 
+                { name: 'Square Resin Drop Earrings', price: 350, category: 'Earrings', image: 'img2.jpg' },
+                { name: 'Resin Monstera Leaf Earrings', price: 350, category: 'Earrings', image: 'img4.jfif' },
+                { name: 'Resin Butterfly Keychain', price: 250, category: 'Earrings', image: 'img7.jpg' },
+                { name: 'Silgo Angel Wings Keychain', price: 250, category: 'Earrings', image: 'img8.jpg' },
+                { name: 'Resin Inlay Chain', price: 300, category: 'Earrings', image: 'img21.jfif' },
+                { name: 'Resin Pendant Jewelry Set', price: 350, category: 'Earrings', image: 'img22.jfif' },
+                { name: 'Butterfly Bestie Set KeyChains', price: 400, category: 'Earrings', image: 'img9.jpg' }
             ],
             Bags: [
                 { name: 'Bridal Crystal Casket', price: 6999, category: 'Bags', image: 'img3.jpg' },
@@ -220,9 +207,24 @@
 
         let currentCategory = 'all';
 
+        function renderProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="product-img">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy">
+                </div>
+                <div class="product-name">${product.name}</div>
+                <div class="product-price">Rs. ${product.price}</div>
+                <button onclick="placeOrder('${product.name}', '${product.price}')" class="whatsapp-btn">Order via WhatsApp</button>
+            `;
+            return card;
+        }
+
         function showPage(page) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(page).classList.add('active');
+            const activePage = document.getElementById(page);
+            if(activePage) activePage.classList.add('active');
             
             if (page === 'products') {
                 displayProducts(currentCategory);
@@ -237,10 +239,8 @@
             displayProducts(category);
         }
 
-        // Updated placeOrder function to send request to backend
         async function placeOrder(productName, price) {
             const orderData = { productName, price, date: new Date().toISOString() };
-            
             try {
                 await fetch('./api/order', {
                     method: 'POST',
@@ -248,81 +248,63 @@
                     body: JSON.stringify(orderData)
                 });
             } catch (err) {
-                console.error("Failed to send order to backend:", err);
+                console.error("Error logging order:", err);
             }
 
-            let waMessage = `Hi Silgo, I want to order ${productName} for Rs. ${price}`;
-            let waLink = `https://wa.me/923712159676?text=${encodeURIComponent(waMessage)}`;
-            window.open(waLink, '_blank');
+            const waMessage = `Hi Silgo, I want to order ${productName} for Rs. ${price}`;
+            const waLink = `https://wa.me/923712159676?text=${encodeURIComponent(waMessage)}`;
+            window.open(waLink, '_blank', 'noopener,noreferrer');
         }
 
         function displayFeaturedProducts() {
             const grid = document.getElementById('featured-products');
+            if(!grid) return;
             grid.innerHTML = '';
             
             const featured = [
                 products.Bags[1],
-                products.Earings[0],
+                products.Earrings[0],
                 products.Bags[2],
-                products.Braclate[0],
-                products.Earings[1],
-                products.Braclate[1]
+                products.Bracelet[0],
+                products.Earrings[1],
+                products.Bracelet[1]
             ];
 
-            featured.forEach((product) => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="product-img">
-                        <img src="${product.image}">
-                    </div>
-                    <div class="product-name">${product.name}</div>
-                    <div class="product-price">Rs. ${product.price}</div>
-                    <button onclick="placeOrder('${product.name}', '${product.price}')" class="whatsapp-btn">Order via WhatsApp</button>
-                `;
-                grid.appendChild(card);
+            featured.forEach(product => {
+                if(product) grid.appendChild(renderProductCard(product));
             });
         }
 
         function displayProducts(category) {
             const grid = document.getElementById('products-grid');
             const title = document.getElementById('category-title');
+            if(!grid) return;
             grid.innerHTML = '';
             
             let productsToShow = [];
             if (category === 'all') {
                 title.textContent = 'ALL PRODUCTS';
-                productsToShow = [...products.Braclate, ...products.Earings, ...products.Bags];
+                productsToShow = [...products.Bracelet, ...products.Earrings, ...products.Bags];
             } else {
                 const categoryTitles = {
-                    'Braclate': 'BRACLATES',
-                    'Earings': 'EARRINGS',
+                    'Bracelet': 'BRACELETS',
+                    'Earrings': 'EARRINGS',
                     'Bags': 'BAGS'
                 };
                 title.textContent = categoryTitles[category] || category.toUpperCase();
                 productsToShow = products[category] || [];
             }
 
-            productsToShow.forEach((product) => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="product-img">
-                        <img src="${product.image}">  
-                    </div>
-                    <div class="product-name">${product.name}</div>
-                    <div class="product-price">Rs. ${product.price}</div>
-                    <button onclick="placeOrder('${product.name}', '${product.price}')" class="whatsapp-btn">Order via WhatsApp</button>
-                `;
-                grid.appendChild(card);
+            productsToShow.forEach(product => {
+                grid.appendChild(renderProductCard(product));
             });
         }
 
         function searchProducts() {
             const value = document.getElementById("search-input").value.toLowerCase();
             const allProducts = [
-                ...products.Braclate,
-                ...products.Earings,
+                ...products.Bracelet,
+                ...products.Earrings,
                 ...products.Bags
             ];
 
@@ -334,25 +316,15 @@
             showPage('products');
 
             const grid = document.getElementById("products-grid");
+            if(!grid) return;
             grid.innerHTML = "";
 
             filtered.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="product-img">
-                        <img src="${product.image}">
-                    </div>
-                    <div class="product-name">${product.name}</div>
-                    <div class="product-price">Rs. ${product.price}</div>
-                    <button onclick="placeOrder('${product.name}', '${product.price}')" class="whatsapp-btn">Order via WhatsApp</button>
-                `;
-                grid.appendChild(card);
+                grid.appendChild(renderProductCard(product));
             });
             document.getElementById("category-title").textContent = "SEARCH RESULTS";
         }
 
-        // Initialize
         displayFeaturedProducts();
     </script>
 </body>
