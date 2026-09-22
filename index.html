@@ -60,8 +60,26 @@
             <div class="products-grid" id="featured-products"></div>
         </div>
 
+        <div class="trust-strip">
+            <div class="trust-item reveal">
+                <div class="trust-icon">✦</div>
+                <h4>Handcrafted with Care</h4>
+                <p>Every piece is individually made, no two exactly alike.</p>
+            </div>
+            <div class="trust-item reveal">
+                <div class="trust-icon">✦</div>
+                <h4>Order Directly via WhatsApp</h4>
+                <p>Chat with us, confirm your order, and we'll take it from there.</p>
+            </div>
+            <div class="trust-item reveal">
+                <div class="trust-icon">✦</div>
+                <h4>Delivered Across Pakistan</h4>
+                <p>Carefully packaged and shipped nationwide.</p>
+            </div>
+        </div>
+
         <div class="featured-collections">
-            <div class="collection-item" onclick="showCategory('Bracelet')">
+            <div class="collection-item reveal" onclick="showCategory('Bracelet')">
                 <img src="img13.jpg" alt="Bracelets">
                 <div class="collection-overlay">
                     <h3>Bracelets</h3>
@@ -69,7 +87,7 @@
                 </div>
             </div>
 
-            <div class="collection-item" onclick="showCategory('Earrings')">
+            <div class="collection-item reveal" onclick="showCategory('Earrings')">
                 <img src="img2.jpg" alt="Earrings">
                 <div class="collection-overlay">
                     <h3>Earrings</h3>
@@ -77,7 +95,7 @@
                 </div>
             </div>
 
-            <div class="collection-item" onclick="showCategory('Bags')">
+            <div class="collection-item reveal" onclick="showCategory('Bags')">
                 <img src="bag1.jpg" alt="Bags">
                 <div class="collection-overlay">
                     <h3>Bags</h3>
@@ -383,6 +401,22 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
         });
+
+        // ---------- Scroll reveal ----------
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        function observeReveals() {
+            document.querySelectorAll('.reveal:not(.in-view)').forEach(el => revealObserver.observe(el));
+        }
+
+        observeReveals();
 
         // Initialize
         displayFeaturedProducts();
