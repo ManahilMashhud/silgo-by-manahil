@@ -166,6 +166,37 @@
         </div>
     </footer>
 
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="modal-overlay" onclick="if(event.target === this) closeModal()">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+            <div class="modal-img">
+                <img id="modal-img" src="" alt="">
+            </div>
+            <div class="modal-info">
+                <div class="modal-category" id="modal-category"></div>
+                <h3 id="modal-name"></h3>
+                <div class="modal-rating" id="modal-rating"></div>
+                <div class="modal-price" id="modal-price"></div>
+                <div class="modal-stock">
+                    <span class="stock-dot"></span> In stock &amp; ready to ship
+                </div>
+
+                <div class="qty-row">
+                    <span class="qty-label">Quantity</span>
+                    <div class="qty-stepper">
+                        <button type="button" onclick="changeQty(-1)" aria-label="Decrease quantity">&minus;</button>
+                        <span id="modal-qty">1</span>
+                        <button type="button" onclick="changeQty(1)" aria-label="Increase quantity">&plus;</button>
+                    </div>
+                </div>
+
+                <button class="order-btn-modal" onclick="orderFromModal()">Order via WhatsApp</button>
+                <p class="modal-note">You'll be redirected to WhatsApp to confirm your order with us directly.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
         window.addEventListener("load", function () {
             const msg = document.getElementById("welcome-message");
@@ -176,31 +207,33 @@
 
         const products = {
             Bracelet: [
-                { name: 'Silgo Bunny Charm Bracelet', price: 250, category: 'Bracelet', image: 'img1.jfif' },
-                { name: 'Basant Bahar Gajrays', price: 999, category: 'Bracelet', image: 'img11.jfif' },
-                { name: 'Beaded Charm Bracelets', price: 300, category: 'Bracelet', image: 'img19.jpg' },
-                { name: 'Stackable Crystal Bands', price: 300, category: 'Bracelet', image: 'img15.jpg' },
-                { name: 'Faux Pearls', price: 250, category: 'Bracelet', image: 'img16.jpg' },
-                { name: 'Resin Flower Bangles', price: 'Pair 1050', category: 'Bracelet', image: 'img23.jfif' },
-                { name: 'Royal Ebony Gajrays', price: 999, category: 'Bracelet', image: 'img12.jpg' }
+                { name: 'Silgo Bunny Charm Bracelet', price: 250, category: 'Bracelet', image: 'img1.jfif', rating: 4.6, reviews: 18 },
+                { name: 'Basant Bahar Gajrays', price: 999, category: 'Bracelet', image: 'img11.jfif', rating: 4.8, reviews: 9 },
+                { name: 'Beaded Charm Bracelets', price: 300, category: 'Bracelet', image: 'img19.jpg', rating: 4.3, reviews: 22 },
+                { name: 'Stackable Crystal Bands', price: 300, category: 'Bracelet', image: 'img15.jpg', rating: 4.5, reviews: 15 },
+                { name: 'Faux Pearls', price: 250, category: 'Bracelet', image: 'img16.jpg', rating: 4.2, reviews: 11 },
+                { name: 'Resin Flower Bangles', price: 'Pair 1050', category: 'Bracelet', image: 'img23.jfif', rating: 4.7, reviews: 6 },
+                { name: 'Royal Ebony Gajrays', price: 999, category: 'Bracelet', image: 'img12.jpg', rating: 4.9, reviews: 13 }
             ],
             Earrings: [
-                { name: 'Square Resin Drop Earrings', price: 350, category: 'Earrings', image: 'img2.jpg' },
-                { name: 'Resin Monstera Leaf Earrings', price: 350, category: 'Earrings', image: 'img4.jfif' },
-                { name: 'Resin Butterfly Keychain', price: 250, category: 'Earrings', image: 'img7.jpg' },
-                { name: 'Silgo Angel Wings Keychain', price: 250, category: 'Earrings', image: 'img8.jpg' },
-                { name: 'Resin Inlay Chain', price: 300, category: 'Earrings', image: 'img21.jfif' },
-                { name: 'Resin Pendant Jewelry Set', price: 350, category: 'Earrings', image: 'img22.jfif' },
-                { name: 'Butterfly Bestie Set KeyChains', price: 400, category: 'Earrings', image: 'img9.jpg' }
+                { name: 'Square Resin Drop Earrings', price: 350, category: 'Earrings', image: 'img2.jpg', rating: 4.4, reviews: 27 },
+                { name: 'Resin Monstera Leaf Earrings', price: 350, category: 'Earrings', image: 'img4.jfif', rating: 4.6, reviews: 8 },
+                { name: 'Resin Butterfly Keychain', price: 250, category: 'Earrings', image: 'img7.jpg', rating: 4.1, reviews: 19 },
+                { name: 'Silgo Angel Wings Keychain', price: 250, category: 'Earrings', image: 'img8.jpg', rating: 4.5, reviews: 14 },
+                { name: 'Resin Inlay Chain', price: 300, category: 'Earrings', image: 'img21.jfif', rating: 4.3, reviews: 10 },
+                { name: 'Resin Pendant Jewelry Set', price: 350, category: 'Earrings', image: 'img22.jfif', rating: 4.7, reviews: 21 },
+                { name: 'Butterfly Bestie Set KeyChains', price: 400, category: 'Earrings', image: 'img9.jpg', rating: 4.4, reviews: 16 }
             ],
             Bags: [
-                { name: 'Bridal Crystal Casket', price: 6999, category: 'Bags', image: 'img3.jpg' },
-                { name: 'Black Beaded Potli', price: 3499, category: 'Bags', image: 'img5.jpg' },
-                { name: 'The Jade Jewel Clutch', price: 1500, category: 'Bags', image: 'img6.jpg' }
+                { name: 'Bridal Crystal Casket', price: 6999, category: 'Bags', image: 'img3.jpg', rating: 4.9, reviews: 5 },
+                { name: 'Black Beaded Potli', price: 3499, category: 'Bags', image: 'img5.jpg', rating: 4.6, reviews: 12 },
+                { name: 'The Jade Jewel Clutch', price: 1500, category: 'Bags', image: 'img6.jpg', rating: 4.8, reviews: 17 }
             ]
         };
 
         let currentCategory = 'all';
+        let modalProduct = null;
+        let modalQty = 1;
 
         function showPage(page) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -220,8 +253,8 @@
         }
 
         // Sends the order to the backend (RabbitMQ via server.js), then opens WhatsApp
-        async function placeOrder(productName, price) {
-            const orderData = { productName, price, date: new Date().toISOString() };
+        async function placeOrder(productName, price, quantity) {
+            const orderData = { productName, price, quantity, date: new Date().toISOString() };
 
             try {
                 await fetch('./api/order', {
@@ -233,9 +266,18 @@
                 console.error("Failed to send order to backend:", err);
             }
 
-            const waMessage = `Hi Silgo, I want to order ${productName} for Rs. ${price}`;
+            const waMessage = `Hi Silgo, I want to order ${quantity > 1 ? quantity + ' x ' : ''}${productName} for Rs. ${price} each`;
             const waLink = `https://wa.me/923712159676?text=${encodeURIComponent(waMessage)}`;
             window.open(waLink, '_blank');
+        }
+
+        function starsHTML(rating) {
+            const full = Math.round(rating);
+            let html = '';
+            for (let i = 1; i <= 5; i++) {
+                html += i <= full ? '★' : '☆';
+            }
+            return `<span class="stars">${html}</span>`;
         }
 
         function renderCards(container, list) {
@@ -247,10 +289,13 @@
                     <div class="product-img">
                         <img src="${product.image}" alt="${product.name}">
                     </div>
-                    <div class="product-name">${product.name}</div>
-                    <div class="product-price">Rs. ${product.price}</div>
-                    <button onclick="placeOrder('${product.name}', '${product.price}')" class="whatsapp-btn">Order via WhatsApp</button>
+                    <div class="product-body">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-rating">${starsHTML(product.rating)} <span class="review-count">${product.reviews} reviews</span></div>
+                        <div class="product-price">Rs. ${product.price}</div>
+                    </div>
                 `;
+                card.addEventListener('click', () => openModal(product));
                 container.appendChild(card);
             });
         }
@@ -300,6 +345,44 @@
             document.getElementById("category-title").textContent = "SEARCH RESULTS";
             renderCards(document.getElementById("products-grid"), filtered);
         }
+
+        // ---------- Product Detail Modal ----------
+        function openModal(product) {
+            modalProduct = product;
+            modalQty = 1;
+
+            document.getElementById('modal-img').src = product.image;
+            document.getElementById('modal-img').alt = product.name;
+            document.getElementById('modal-category').textContent = product.category.toUpperCase();
+            document.getElementById('modal-name').textContent = product.name;
+            document.getElementById('modal-rating').innerHTML =
+                starsHTML(product.rating) + ` <span class="review-count">(${product.reviews} reviews)</span>`;
+            document.getElementById('modal-price').textContent = 'Rs. ' + product.price;
+            document.getElementById('modal-qty').textContent = modalQty;
+
+            document.getElementById('product-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function changeQty(delta) {
+            modalQty = Math.max(1, modalQty + delta);
+            document.getElementById('modal-qty').textContent = modalQty;
+        }
+
+        function orderFromModal() {
+            if (!modalProduct) return;
+            placeOrder(modalProduct.name, modalProduct.price, modalQty);
+            closeModal();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
 
         // Initialize
         displayFeaturedProducts();
